@@ -1,0 +1,64 @@
+@token = 2|Exbqam1aFcowqMPSwmbRFivpXSGXkov8I3S19369aac2fba4
+### Register User
+POST http://localhost:8000/api/register
+Content-Type: application/json
+
+{
+  "name": "Maria",
+  "email": "maria@email.com",
+  "password": "senha123",
+  "password_confirmation": "senha123"
+}
+
+
+### Login User
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+  "email": "maria@email.com",
+  "password": "senha123"
+}
+
+### Logout User
+POST http://localhost:8000/api/logout
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+
+
+### LISTAR REMÉDIOS
+GET http://localhost:8000/api/medicines
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### CRIAR NOVO REMÉDIO
+POST http://localhost:8000/api/medicines
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Dipirona",
+  "manufacturer": "Medley",
+  "amount": 10,
+  "external_code": "ABC123"
+}
+
+### VER DETALHES DE UM REMÉDIO
+GET http://localhost:8000/api/medicines/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### ATUALIZAR REMÉDIO
+PUT http://localhost:8000/api/medicines/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "amount": 15
+}
+
+### DELETAR REMÉDIO
+DELETE http://localhost:8000/api/medicines/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
