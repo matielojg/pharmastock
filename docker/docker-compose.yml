@@ -3,6 +3,10 @@ services:
     build:
       context: ../pharmastock
       dockerfile: ../docker/Dockerfile
+    user: "${UID}:${GID}"
+    environment:
+      - UID=${UID}
+      - GID=${GID}
     image: pharmastock-app
     container_name: pharmastock-app
     restart: unless-stopped
