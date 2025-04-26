@@ -7,11 +7,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Medicine;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    /**
+     * @return HasMany<Medicine>
+    */
+    public function medicines(): HasMany
+    {
+        return $this->hasMany(Medicine::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
