@@ -5,18 +5,11 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { useThemeMode } from './ThemeRegistry';
-import { useRouter } from 'next/navigation';
-import { useAuth } from './AuthProvider';
+import { useLogout } from '@/hooks/useLogout';
 
 export default function Navbar() {
   const { mode, toggleMode } = useThemeMode();
-  const router = useRouter();
-  const { logout } = useAuth();
-
-  const handleLogout = () => {
-    logout();           // Limpa o token no context
-    router.push('/login');  // Redireciona para login
-  };
+  const logout = useLogout();
 
   return (
     <AppBar position="static" color="primary" enableColorOnDark>
@@ -38,7 +31,7 @@ export default function Navbar() {
             variant="outlined"
             color="inherit"
             startIcon={<LogoutIcon />}
-            onClick={handleLogout}
+            onClick={logout}
           >
             Sair
           </Button>
