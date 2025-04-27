@@ -1,16 +1,13 @@
-import { AuthProvider } from '@/components/AuthProvider';
+import { ReactNode } from 'react';
+import RootLayoutClient from './RootLayout.client';
+
 import './globals.css';
 
-export const metadata = {
-  title: 'PharmaStock',
-  description: 'Controle de Medicamentos',
-};
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR" suppressHydrationWarning>
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <RootLayoutClient>{children}</RootLayoutClient>
       </body>
     </html>
   );
