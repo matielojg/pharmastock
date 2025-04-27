@@ -1,7 +1,7 @@
 services:
   app:
     build:
-      context: ../pharmastock
+      context: ../pharmastock-backend
       dockerfile: ../docker/Dockerfile
     user: "${UID}:${GID}"
     environment:
