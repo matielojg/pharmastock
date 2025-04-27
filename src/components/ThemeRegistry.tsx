@@ -33,6 +33,11 @@ export default function ThemeRegistry({ children }: { children: ReactNode }) {
       palette: {
         mode,
         primary: { main: '#1976d2' },
+        secondary: { main: '#9c27b0' },
+        background: {
+          default: mode === 'light' ? '#f5f5f5' : '#121212', 
+          paper: mode === 'light' ? '#ffffff' : '#1e1e1e',
+        },
       },
     });
   }, [mode]);
