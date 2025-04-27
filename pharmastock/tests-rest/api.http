@@ -1,4 +1,4 @@
-@token = 2|Exbqam1aFcowqMPSwmbRFivpXSGXkov8I3S19369aac2fba4
+@token = <SEU TOKEN AQUI>
 ### Register User
 POST http://localhost:8000/api/register
 Content-Type: application/json
@@ -60,5 +60,22 @@ Content-Type: application/json
 
 ### DELETAR REMÉDIO
 DELETE http://localhost:8000/api/medicines/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+
+
+### Buscar por nome do medicamento
+GET http://localhost:8000/api/medicines-info/search?nome=dipirona
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Buscar por principio ativo
+GET http://localhost:8000/api/medicines-info/search?principio=paracetamol
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Buscar por laboratório
+GET http://localhost:8000/api/medicines-info/search?laboratorio=ems
 Authorization: Bearer {{token}}
 Content-Type: application/json
