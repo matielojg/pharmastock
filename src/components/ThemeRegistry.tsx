@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useState, useMemo, createContext, useContext } from 'react';
+import { ReactNode, useState, useMemo, createContext, useContext, useEffect} from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import createEmotionCache from '@/lib/createEmotionCache';
@@ -24,8 +24,17 @@ const clientSideEmotionCache = createEmotionCache();
 export default function ThemeRegistry({ children }: { children: ReactNode }) {
   const [mode, setMode] = useState<'light' | 'dark'>('light');
 
+  useEffect(() => {
+    const storedMode = localStorage.getItem('themeMode') as 'light' | 'dark' | null;
+    if (storedMode) {
+      setMode(storedMode);
+    }
+  }, []);
+
   const toggleMode = () => {
-    setMode((prev) => (prev === 'light' ? 'dark' : 'light'));
+    const newMode = mode === 'light' ? 'dark' : 'light';
+    setMode(newMode);
+    localStorage.setItem('themeMode', newMode);
   };
 
   const theme = useMemo(() => {
