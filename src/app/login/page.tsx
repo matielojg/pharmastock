@@ -1,14 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '@/components/AuthProvider';
 import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
-  const { login } = useAuth();
+  const { login, token } = useAuth();
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+    useEffect(() => {
+      if (token) {
+        router.replace('/medicines'); // Se já tiver token, redireciona
+      }
+    }, [token, router]);
 
   const handleLogin = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
