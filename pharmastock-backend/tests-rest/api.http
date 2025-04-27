@@ -1,0 +1,97 @@
+@token = 4|PVR5qLvCxHJ1RLklN0OYpRcuYddbQ6PtFCGq8MNC318d98f0
+### Register User
+POST http://localhost:8000/api/register
+Content-Type: application/json
+
+{
+  "name": "Maria",
+  "email": "maria@email.com",
+  "password": "senha123",
+  "password_confirmation": "senha123"
+}
+
+
+### Login User
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+  "email": "maria@email.com",
+  "password": "senha123"
+}
+
+### Logout User
+POST http://localhost:8000/api/logout
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+
+
+### LISTAR REMÉDIOS
+GET http://localhost:8000/api/medicines
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### CRIAR NOVO REMÉDIO
+POST http://localhost:8000/api/medicines
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Dipirona",
+  "manufacturer": "Medley",
+  "amount": 10,
+  "external_code": "ABC123"
+}
+
+### VER DETALHES DE UM REMÉDIO
+GET http://localhost:8000/api/medicines/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### ATUALIZAR REMÉDIO
+PUT http://localhost:8000/api/medicines/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "amount": 15
+}
+
+### DELETAR REMÉDIO
+DELETE http://localhost:8000/api/medicines/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+
+## API MEDICAMENTOS
+### Buscar por nome do medicamento
+GET http://localhost:8000/api/medicines-info/search?nome=dipirona
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Buscar por principio ativo
+GET http://localhost:8000/api/medicines-info/search?principio=paracetamol
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Buscar por laboratório
+GET http://localhost:8000/api/medicines-info/search?laboratorio=ems
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+#Busca combinada
+### Buscar por Nome + Laboratório
+GET http://localhost:8000/api/medicines-info/search?nome=dipirona&laboratorio=ems
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Buscar por Princípio Ativo + Classe Terapêutica
+GET http://localhost:8000/api/medicines-info/search?principio=paracetamol&classe=analgésicos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Buscar por Nome + Princípio Ativo + Registro
+GET http://localhost:8000/api/medicines-info/search?nome=aspirina&principio=ácido%20acetilsalicílico&registro=123456
+Authorization: Bearer {{token}}
+Content-Type: application/json
