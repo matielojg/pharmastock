@@ -13,7 +13,7 @@ services:
     ports:
       - 8000:8000
     volumes:
-    - ../pharmastock:/var/www
+      - ../pharmastock-backend:/var/www
     depends_on:
       - db
 
