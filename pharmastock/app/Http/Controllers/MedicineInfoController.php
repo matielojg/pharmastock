@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\MedicineInfo;
+use App\Http\Resources\MedicineInfoResource;
 
 class MedicineInfoController extends Controller
 {
@@ -34,8 +35,8 @@ class MedicineInfoController extends Controller
             $query->where('numero_registro_produto', 'LIKE', '%' . $request->registro . '%');
         }
 
-        $results = $query->paginate(10); // Paginação de 10 resultados por página
+        $results = $query->paginate(10);
 
-        return response()->json($results);
+        return MedicineInfoResource::collection($results);
     }
 }
