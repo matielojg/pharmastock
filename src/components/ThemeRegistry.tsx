@@ -24,12 +24,22 @@ const clientSideEmotionCache = createEmotionCache();
 export default function ThemeRegistry({ children }: { children: ReactNode }) {
   const [mode, setMode] = useState<'light' | 'dark'>('light');
 
+  // Primeiro: ler do localStorage quando a página carrega
   useEffect(() => {
     const storedMode = localStorage.getItem('themeMode') as 'light' | 'dark' | null;
     if (storedMode) {
       setMode(storedMode);
     }
   }, []);
+
+  // Depois: aplicar classe `dark` no HTML sempre que mudar o modo
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      document.documentElement.classList.toggle('dark', mode === 'dark');
+      document.documentElement.style.setProperty('--background-light', mode === 'light' ? '#f5f5f5' : '#121212');
+      document.documentElement.style.setProperty('--foreground-light', mode === 'light' ? '#171717' : '#ededed');
+    }
+  }, [mode]);
 
   const toggleMode = () => {
     const newMode = mode === 'light' ? 'dark' : 'light';
@@ -44,7 +54,7 @@ export default function ThemeRegistry({ children }: { children: ReactNode }) {
         primary: { main: '#1976d2' },
         secondary: { main: '#9c27b0' },
         background: {
-          default: mode === 'light' ? '#f5f5f5' : '#121212', 
+          default: mode === 'light' ? '#f5f5f5' : '#121212',
           paper: mode === 'light' ? '#ffffff' : '#1e1e1e',
         },
       },
