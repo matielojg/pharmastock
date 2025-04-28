@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useApi } from '@/lib/api';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import LoadingWrapper from '@/components/LoadingGovbr';
+import PageContainer from '@/components/Layout/Public/PageContainer';
 
 export default function MedicinesPage() {
   const { get, token } = useApi();
@@ -27,20 +28,20 @@ export default function MedicinesPage() {
 
   return (
     <ProtectedRoute>
-      <main className="min-h-screen p-4">
+      <PageContainer>
         <h1 className="text-2xl font-bold mb-4">Medicamentos</h1>
-        <ul>
-          {Array.isArray(medicines) ? (
-            medicines.map((med: any) => (
-              <li key={med.id} className="border-b py-2">
-                {med.name} ({med.manufacturer})
-              </li>
-            ))
-          ) : (
-            <p className="text-red-500">Erro ao carregar medicamentos</p>
-          )}
-        </ul>
-      </main>
+          <ul>
+            {Array.isArray(medicines) ? (
+              medicines.map((med: any) => (
+                <li key={med.id} className="border-b py-2">
+                  {med.name} ({med.manufacturer})
+                </li>
+              ))
+            ) : (
+              <p className="text-red-500">Erro ao carregar medicamentos</p>
+            )}
+          </ul>
+      </PageContainer>
     </ProtectedRoute>
   );
 }
