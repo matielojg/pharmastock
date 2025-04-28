@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Depois do Tailwind, você importa os outros CSS */
+@import '@govbr-ds/core/src/core';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+:root {
+  --background-light: #f5f5f5;
+  --foreground-light: #171717;
+  --background-dark: #121212;
+  --foreground-dark: #ededed;
+}
+
+
+body {
+  min-height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.br-menu.push {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100%;
+  transform: translateX(-100%);
+  transition: transform .3s ease;
+  z-index: 9999;
+}
+
+.br-menu.push.active {
+  transform: translateX(0);
+}
+
+.push-content {
+  transition: margin-left .3s ease;
+}
+
+.br-menu.push.active~.push-content {
+  margin-left: 280px;
+  /* mesmo valor do width do menu */
+}
