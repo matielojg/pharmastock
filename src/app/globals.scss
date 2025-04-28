@@ -1,9 +1,10 @@
+@import '@govbr-ds/core/src/core';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Depois do Tailwind, você importa os outros CSS */
-@import '@govbr-ds/core/src/core';
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 
 :root {
@@ -36,11 +37,3 @@ body {
   transform: translateX(0);
 }
 
-.push-content {
-  transition: margin-left .3s ease;
-}
-
-.br-menu.push.active~.push-content {
-  margin-left: 280px;
-  /* mesmo valor do width do menu */
-}
